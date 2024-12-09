@@ -1,7 +1,7 @@
 package com.example.realTimeTicketingSystem.model;
 
 public class Ticket {
-    private int ticketId;
+    private final int ticketId;
 
     public Ticket(int ticketId) {
         this.ticketId = ticketId;
@@ -11,12 +11,8 @@ public class Ticket {
         return ticketId;
     }
 
-    public void setTicketId(int ticketId) {
-        this.ticketId = ticketId;
-    }
-
     @Override
     public String toString() {
-        return "Ticket{" + "ticketId=" + ticketId + '}';
+        return "ticketId=" + ticketId ;
     }
 }

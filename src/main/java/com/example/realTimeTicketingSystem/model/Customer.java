@@ -1,6 +1,5 @@
 package com.example.realTimeTicketingSystem.model;
 
-
 public class Customer implements Runnable {
     private final TicketPool ticketPool;
     private final int customerRetrievalRate;
@@ -14,15 +13,11 @@ public class Customer implements Runnable {
     public void run() {
         try {
             while (!Thread.currentThread().isInterrupted()) {
-                Ticket ticket = ticketPool.removeTicket();
-                if (ticket != null) {
-                    System.out.println(Thread.currentThread().getName() + " purchased Ticket ID: " + ticket.getTicketId());
-                }
+                ticketPool.removeTicket();
                 Thread.sleep(customerRetrievalRate);
             }
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
-            System.out.println(Thread.currentThread().getName() + " was interrupted.");
         }
     }
 }

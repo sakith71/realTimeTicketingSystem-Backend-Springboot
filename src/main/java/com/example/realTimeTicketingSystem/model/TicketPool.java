@@ -1,15 +1,15 @@
 package com.example.realTimeTicketingSystem.model;
 
-
 import java.util.LinkedList;
 import java.util.Queue;
 
 public class TicketPool {
-    private final Queue<Ticket> tickets;
+    private final Queue<Ticket> tickets = new LinkedList<>();
     private final int maxCapacity;
+    private int addTicketCount;
+    private int removeTicketCount;
 
     public TicketPool(int maxCapacity) {
-        this.tickets = new LinkedList<>();
         this.maxCapacity = maxCapacity;
     }
 
@@ -24,7 +24,8 @@ public class TicketPool {
             }
         }
         tickets.add(ticket);
-        System.out.println("Ticket added: " + ticket);
+        addTicketCount++;
+        System.out.println("Ticket " + addTicketCount + " added by " + Thread.currentThread().getName() + " | Total Tickets: " + tickets.size());
         notifyAll();
     }
 
@@ -39,7 +40,8 @@ public class TicketPool {
             }
         }
         Ticket ticket = tickets.poll();
-        System.out.println("Ticket removed: " + ticket);
+        removeTicketCount++;
+        System.out.println("Ticket " + removeTicketCount + " bought by " + Thread.currentThread().getName() + " | Remaining Tickets: " + tickets.size());
         notifyAll();
         return ticket;
     }
