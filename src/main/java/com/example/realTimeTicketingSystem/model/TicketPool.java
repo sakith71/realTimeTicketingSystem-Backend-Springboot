@@ -45,4 +45,9 @@ public class TicketPool {
         notifyAll();
         return ticket;
     }
+
+    public synchronized int getTicketCount() {
+        return tickets.size();
+    }
+
 }

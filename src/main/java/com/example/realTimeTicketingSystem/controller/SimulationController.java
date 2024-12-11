@@ -4,10 +4,12 @@ import com.example.realTimeTicketingSystem.service.SimulationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
 @RequestMapping("/api/simulation")
+@CrossOrigin
 public class SimulationController {
 
     @Autowired
@@ -31,4 +33,14 @@ public class SimulationController {
         simulationService.stopSimulation();
         return "Simulation stopped successfully.";
     }
+    @GetMapping("/ticketCount")
+    public int getTicketCount() {
+        return simulationService.getTicketCount();
+    }
+
+    @GetMapping("/logs")
+    public List<String> getLogs() {
+        return simulationService.getLogs();
+    }
+
 }

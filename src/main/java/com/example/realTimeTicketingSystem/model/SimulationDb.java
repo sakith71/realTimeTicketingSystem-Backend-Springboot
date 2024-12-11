@@ -3,7 +3,7 @@ package com.example.realTimeTicketingSystem.model;
 import jakarta.persistence.*;
 
 @Entity
-public class SimulationLog {
+public class SimulationDb {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,21 +15,19 @@ public class SimulationLog {
     private int maxTicketCapacity;
     private int numVendors;
     private int numCustomers;
-    private String status; // STARTED or STOPPED
 
     // Default constructor
-    public SimulationLog() {}
+    public SimulationDb() {}
 
     // Constructor
-    public SimulationLog(int totalTickets, int ticketReleaseRate, int customerRetrievalRate,
-                         int maxTicketCapacity, int numVendors, int numCustomers, String status) {
+    public SimulationDb(int totalTickets, int ticketReleaseRate, int customerRetrievalRate,
+                        int maxTicketCapacity, int numVendors, int numCustomers) {
         this.totalTickets = totalTickets;
         this.ticketReleaseRate = ticketReleaseRate;
         this.customerRetrievalRate = customerRetrievalRate;
         this.maxTicketCapacity = maxTicketCapacity;
         this.numVendors = numVendors;
         this.numCustomers = numCustomers;
-        this.status = status;
     }
 
     // Getters and Setters
@@ -87,13 +85,5 @@ public class SimulationLog {
 
     public void setNumCustomers(int numCustomers) {
         this.numCustomers = numCustomers;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 }
